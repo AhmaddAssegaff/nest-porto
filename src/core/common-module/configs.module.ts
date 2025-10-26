@@ -20,6 +20,7 @@ import * as Joi from 'joi';
         ENABLE_VERSION: Joi.boolean().required(),
         VERSION_PREFIX: Joi.string().required(),
         DEFAULT_VERSION: Joi.number().required(),
+        SWAGGER_PATH: Joi.string().required(),
       }),
       validationOptions: {
         abortEarly: true,

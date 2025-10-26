@@ -2,6 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ConfigService } from '@nestjs/config';
 import { VersioningType } from '@nestjs/common';
+import { createDocument } from '@core/docs/swagger';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -25,9 +26,12 @@ async function bootstrap() {
       defaultVersion,
       prefix: versionPrefix,
     });
-    // createDocument(app);
   }
 
-  await app.listen(3000);
+  if (envMode !== 'production') {
+    createDocument(app);
+  }
+
+  await app.listen(appPort);
 }
 bootstrap();
